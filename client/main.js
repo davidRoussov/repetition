@@ -5,11 +5,13 @@ import './main.html';
 
 var Repetition = new Mongo.Collection("topics");
 
+Session.set("currentTopic", undefined);
+
+
 Template.topicsBar.helpers({
 	topic: function() {
 		if (Repetition.findOne() && Repetition.findOne().topics) {
 			let topics = Repetition.findOne().topics;
-			console.log(topics);
 			Session.set("allTopics", topics);
 			return topics;
 		}
@@ -18,15 +20,33 @@ Template.topicsBar.helpers({
 });
 
 Template.studySection.helpers({
-	topic: function() {
-		return Session.get("currentTopic");
+	content: function() {
+		let currentTopic = Session.get("currentTopic");
+		if (currentTopic) {
+			let allContent = currentTopic["content"];
+			let sorted = allContent.sort(function(a,b) {
+				if (a.rank < b.rank) {
+					return -1;
+				} else if (a.rank > b.rank) {
+					return 1;
+				}
+				else {
+					return 0;
+				}
+			});
+			Session.set("currentQuestion", sorted[0]);
+			return Session.get("currentQuestion");
+		}
 	}
 
 });
 
 Template.addSection.helpers({
 	topic: function() {
-		return Session.get("currentTopic");
+		if (Session.get("currentTopic")) {
+			return Session.get("currentTopic");	
+		}
+		
 	}
 
 });
@@ -77,6 +97,21 @@ Template.studySection.events({
 			button.html("Reveal");
 			$("#evaluationButtons").addClass("hide");
 		}
+	},
+	"click .js-study-good": function(event) {
+		Meteor.call("goodAnswer", Session.get("currentTopic"), Session.get("currentQuestion"), function() {
+			refreshStudy();
+		});
+	},
+	"click .js-study-bad": function(event) {
+		Meteor.call("badAnswer", Session.get("currentTopic"), Session.get("currentQuestion"), function() {
+			refreshStudy();
+		});
+	},
+	"click .js-study-pass": function(event) {
+		Meteor.call("passAnswer", Session.get("currentTopic"), Session.get("currentQuestion"), function() {
+			refreshStudy();
+		});
 	}
 
 
@@ -91,3 +126,23 @@ Template.addSection.events({
 		Meteor.call("addQuestion", topicID, question, answer);
 	}
 });
+
+function refreshStudy() {
+	if (Repetition.findOne() && Repetition.findOne().topics) {
+		let topics = Repetition.findOne().topics;
+		Session.set("allTopics", topics);
+
+		topics.forEach(topic => {
+			if (topic._id == Session.get("currentTopic")._id) {
+				Session.set("currentTopic", topic);
+			}
+		})
+
+
+		$("#studyTextarea").addClass("obscured-textarea");
+		$("#hide-show-button").html("Reveal");
+		$("#evaluationButtons").addClass("hide");
+	}
+
+	
+}

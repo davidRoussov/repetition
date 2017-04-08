@@ -76,22 +76,22 @@
       <h1 class="section-heading-h1">study</h1>
     </div>
 
-    {{#if topic}}
+    {{#if content}}
     <div class="section-body">
 
-      <input type="text" class="sr-question-input form-control" value="here is an example question">
+      <input type="text" class="sr-question-input form-control" value={{content.question}}>
 
-      <textarea id="studyTextarea" disabled class="sr-answer-textarea form-control obscured-textarea">this is an example answer</textarea>
+      <textarea id="studyTextarea" disabled class="sr-answer-textarea form-control obscured-textarea">{{content.answer}}</textarea>
 
       <button id="hide-show-button" type="button" class="btn btn-primary js-hide-show-button">Reveal</button>
 
       <div id="evaluationButtons" class="hide">
 
-        <button type="button" class="btn btn-success">Good</button>
+        <button type="button" class="btn btn-success js-study-good">Good</button>
 
-        <button type="button" class="btn btn-danger">Bad</button>
+        <button type="button" class="btn btn-danger js-study-bad">Bad</button>
 
-        <button type="button" class="btn btn-warning">Pass</button>
+        <button type="button" class="btn btn-warning js-study-pass">Pass</button>
 
 
       </div>
@@ -114,9 +114,9 @@
     {{#if topic}}
     <div class="section-body">
 
-      <input type="text" class="sr-question-input form-control js-submit-problem-question" value="here is an example question">
+      <input type="text" class="sr-question-input form-control js-submit-problem-question">
 
-      <textarea class="sr-answer-textarea form-control js-submit-problem-answer">this is an example answer</textarea>
+      <textarea class="sr-answer-textarea form-control js-submit-problem-answer"></textarea>
 
       <button type="button" class="btn btn-primary js-submit-problem-button">Submit</button>
 
