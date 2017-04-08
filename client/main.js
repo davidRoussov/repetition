@@ -72,9 +72,7 @@ Template.topicsBar.events({
 		let topicName = $(event.target).val();
 
 		if (key === 13) {
-			Meteor.call("addNewTopic", topicName, function() {
-
-			});
+			Meteor.call("addNewTopic", topicName);
 		}
 	}
 })
