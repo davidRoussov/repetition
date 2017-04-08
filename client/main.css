@@ -1,0 +1,135 @@
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0px;
+}
+
+button {
+	outline: none !important;
+}
+
+.hide {
+	display: none;
+}
+
+#appContainer {
+	height: 100vh;
+}
+
+#srBrand {
+	height: 54px;
+	background-color: #0163b7;
+}
+
+.section-heading {
+	height: 54px;
+	background-color: #F7F7F7;
+	text-align: center;
+}
+.section-heading-h1 {
+	margin: 0px;
+}
+
+.section-body {
+	padding: 20px;
+	text-align: center;
+}
+
+.sr-question-input {
+	margin-bottom: 30px;
+}
+
+.sr-answer-textarea {
+	height: 600px !important;
+	margin-bottom: 20px;
+}
+
+.obscured-textarea {
+	background-color: lightgray !important;
+	color: lightgray !important;
+	user-select: none;	
+}
+
+#hide-show-button {
+	margin-bottom: 10px;
+	width: 100%;
+}
+
+#topicsBar {
+	float: left;
+	width: 125px;
+	height: 100%;
+	background-color: #0275d8;
+}
+
+.topic-menu-button-container {
+	width: 100%;
+}
+
+.topic-menu-button {
+	border: none;
+	padding: 5px;
+	font-size: 16px;
+	outline: none !important;
+	overflow: auto;
+}
+
+.topic-menu-button-options {
+	display: inline-block;
+	float: right;
+	width: 35px;
+	padding: 0px !important;
+}
+
+.glyph-button {
+	border: none;
+	background-color: transparent !important;
+}
+.glyph-button:hover, .glyph-button:focus {
+	border-color: transparent !important;
+	outline: 0 !important;
+	background-color: transparent !important;
+	box-shadow: none !important;	
+}
+.glyph-button:hover {
+	color: lightgray !important;
+}
+
+.add-topic-dropdown {
+	padding: 0px !important;
+	border: none !important;
+}
+
+
+.button-when-unselected {
+	background-color: transparent;
+}
+.button-when-unselected:hover {
+	background-color: #3397EB;
+}
+.button-when-selected {
+	background-color: #5cb85c;
+}
+.button-when-selected:hover {
+	background-color: #8AD38A;
+}
+
+.topic-menu-button-options {
+	position: fixed;
+}
+
+#mainContent {
+	overflow: hidden;
+}
+
+#studySection {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+#addSection {
+	float: left;
+	width: 50%;
+	height: 100%;
+}

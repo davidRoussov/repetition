@@ -1,0 +1,129 @@
+<head>
+  <title>spaced repetition</title>
+</head>
+
+<body>
+
+  <div id="appContainer">
+
+    {{> topicsBar}}
+
+
+
+    <div id="mainContent">
+      {{> studySection}}
+
+      {{> addSection}}
+    </div>
+
+  </div>
+
+</body>
+
+
+<template name="topicsBar">
+
+  <section id="topicsBar">
+
+    <div id="srBrand">
+      <nav class="navbar navbar-light">
+        <a class="navbar-brand" href="#">
+          Repetition
+        </a>
+      </nav>
+    </div>
+
+
+
+
+
+    {{#each topic}}
+
+    <div class="topic-menu-button-container">
+      <button id={{_id}} type="button" class="button-when-unselected topic-menu-button js-topic-menu-button">{{topicName}}</button>
+
+      <button type="button" class="btn btn-default topic-menu-button-options glyph-button" aria-label="Left Align">
+        <span class="glyphicon glyphicon-option-vertical" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    {{/each}}
+
+
+    <div class="dropdown">
+      <button type="button" class="btn btn-default glyph-button dropdown-toggle" aria-label="Left Align" data-toggle="dropdown" >
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </button>
+      <ul class="dropdown-menu add-topic-dropdown">
+        <li><input type="text" class="form-control js-addNewTopicInput" placeholder="enter topic"></li>
+      </ul>
+    </div>
+
+
+
+
+
+
+  </section>
+
+</template>
+
+<template name="studySection">
+
+  <section id="studySection">
+
+    <div class="section-heading">
+      <h1 class="section-heading-h1">study</h1>
+    </div>
+
+    {{#if topic}}
+    <div class="section-body">
+
+      <input type="text" class="sr-question-input form-control" value="here is an example question">
+
+      <textarea id="studyTextarea" disabled class="sr-answer-textarea form-control obscured-textarea">this is an example answer</textarea>
+
+      <button id="hide-show-button" type="button" class="btn btn-primary js-hide-show-button">Reveal</button>
+
+      <div id="evaluationButtons" class="hide">
+
+        <button type="button" class="btn btn-success">Good</button>
+
+        <button type="button" class="btn btn-danger">Bad</button>
+
+        <button type="button" class="btn btn-warning">Pass</button>
+
+
+      </div>
+
+    </div>
+    {{/if}}
+
+  </section>
+
+</template>
+
+<template name="addSection">
+
+  <section id="addSection">
+
+    <div class="section-heading">
+      <h1 class="section-heading-h1">add</h1>
+    </div>
+
+    {{#if topic}}
+    <div class="section-body">
+
+      <input type="text" class="sr-question-input form-control js-submit-problem-question" value="here is an example question">
+
+      <textarea class="sr-answer-textarea form-control js-submit-problem-answer">this is an example answer</textarea>
+
+      <button type="button" class="btn btn-primary js-submit-problem-button">Submit</button>
+
+    </div>
+    {{/if}}
+
+  </section>
+
+</template>
+
